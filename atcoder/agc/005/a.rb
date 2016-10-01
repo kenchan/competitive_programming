@@ -11,3 +11,9 @@ i = 0
 end
 
 puts n.length
+
+# 半分じゃだめ
+#n = STDIN.gets.strip
+#i = 0
+#
+#puts n[0...(n.length / 2)].count('T') * 2
