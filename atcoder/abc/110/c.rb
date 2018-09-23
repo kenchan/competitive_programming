@@ -1,18 +1,7 @@
-s = STDIN.gets.chop
-t = STDIN.gets.chop
+s = STDIN.gets.chomp
+t = STDIN.gets.chomp
 
-m = {}
+sm = s.split('').inject({}) {|h, c| h[c] ? h[c] = h[c] + 1 : h[c] = 1; h }
+tm = t.split('').inject({}) {|h, c| h[c] ? h[c] = h[c] + 1 : h[c] = 1; h }
 
-r = true
-
-s.length.times do |i|
-  if m[t[i]]
-    if m[t[i]] != s[i]
-      r = false
-      break
-    end
-  end
-  m[t[i]] = s[i]
-end
-
-puts r ? 'Yes' : 'No'
+puts sm.values.sort == tm.values.sort ? 'Yes' : 'No'
