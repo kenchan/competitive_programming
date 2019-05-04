@@ -1,37 +1,50 @@
 h, w = STDIN.gets.split.map(&:to_i)
 
 a = []
+hh = 0
 
 while l = STDIN.gets
-  a << l.strip.split(//)
+  l.strip.split(//).each_with_index do |v, i|
+    if v == '.'
+      a << i + hh * w
+    end
+  end
+
+  hh = hh + 1
 end
 
 count = 0
 
-until a.flatten.all? {|v| v == '#' }
-  tmp = Marshal.load(Marshal.dump(a))
+until a == []
+  tmp = a.dup
+  a.each do |v|
+    if v % w == 0
+      if (v - w - 1 > 0 && !a.include?(v - w - 1)) || (v + w + 1 < h * w && !a.include?(v + w + 1))
+        tmp = tmp - [v]
+      end
+      unless a.include?(v + 1)
+        tmp = tmp - [v]
+      end
+    elsif v % w == w - 1
+      if (v - w - 1 > 0 && !a.include?(v - w - 1)) || (v + w + 1 < h * w && !a.include?(v + w + 1))
+        tmp = tmp - [v]
+      end
+      unless a.include?(v - 1)
+        tmp = tmp - [v]
+      end
+    else
+      if (v - w - 1 > 0 && !a.include?(v - w - 1)) || (v + w + 1 < h * w && !a.include?(v + w))
+        tmp = tmp - [v]
+      end
 
-  h.times.each do |i|
-    w.times.each do |j|
-      if a[i][j] == '#'
-        if j - 1 >= 0
-          tmp[i][j - 1] = "#"
-        end
-        if j + 1 < w
-          tmp[i][j + 1] = "#"
-        end
-        if i - 1 >= 0
-          tmp[i - 1][j] = "#"
-        end
-        if i + 1 < h
-          tmp[i + 1][j] = "#"
-        end
+      unless !a.include?(v - 1) || !a.include?(v + 1)
+        tmp = tmp - [v]
       end
     end
   end
 
-  a = tmp
   count = count + 1
+  a = tmp
 end
 
-puts count
+p count
