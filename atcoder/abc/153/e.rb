@@ -1,22 +1,14 @@
 h, n = gets.split.map(&:to_i)
-ab = n.times.inject([]) do |acc|
-  acc << gets.split.map(&:to_i)
-end
-
-dp = [10 ** 9] * h
-dp[h] = 0
-
-h.downto(0).each do |current_hp|
-  ab.each do |a, b|
-    if h <= (current_hp + a)
-      dp[current_hp] = [dp[current_hp], b].min
-    elsif current_hp < a
-      dp[0] = [dp[0], dp[current_hp + 1] + b].min
-    else
-      tmp = dp[current_hp + a] + b 
-      dp[current_hp] = [tmp, dp[current_hp]].min
-    end
+ 
+dp = [10 ** 9] * (h + 1)
+dp[0] = 0
+ 
+n.times do
+  a,b = gets.split.map(&:to_i)
+  h.times do |ch|
+    nh = (ch + a < h) ? ch + a : h
+    dp[nh] = (dp[nh] < dp[ch] + b) ? dp[nh] : dp[ch] + b
   end
 end
-
-puts dp[0]
+ 
+puts dp[h]
