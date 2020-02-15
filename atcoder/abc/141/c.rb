@@ -1,17 +1,12 @@
 N, K, Q = gets.split.map(&:to_i)
 
-A = Q.times.map {
-  gets.to_i
-}
+points = [0] * N
 
-points = [K] * N
-
-A.each do |i|
-  0.upto(N - 1) do |j|
-    points[j] -= 1 unless j == i - 1
-  end
+1.upto(Q) do
+  i = gets.to_i
+  points[i - 1] += 1
 end
 
 points.each do |point|
-  puts 0 < point ? 'Yes' : 'No'
+  puts 0 < K + point - Q ? 'Yes' : 'No'
 end
