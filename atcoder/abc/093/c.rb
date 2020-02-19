@@ -1,19 +1,19 @@
-A, B, C = gets.split.map(&:to_i)
+a, b, c = gets.split.map(&:to_i)
 
-queue = [[A, B, C, 0]]
-PATTERN = [[1,1,0],[1,0,1],[0,1,1],[2,0,0],[0,2,0],[0,0,2]]
+count = 0
 
-loop do
-  (a, b, c, count) = *queue.shift
-  PATTERN.each do |pat|
-    na = a + pat[0]
-    nb = b + pat[1]
-    nc = c + pat[2]
-    ncount = count + 1
-    if na == nb && nb == nc
-      puts ncount
-      exit
-    end
-    queue << [na, nb, nc, ncount]
-  end
+max = [a, b, c].max
+
+d_1, d_2 = [max - a, max - b, max - c].max(2)
+
+count += d_1 / 2 + d_2 / 2
+
+if d_1 % 2 == 0 && d_2 % 2 == 0
+  # do nothing
+elsif d_1 % 2 == 1 && d_2 % 2 == 1
+  count += 1
+else
+  count += 2
 end
+
+puts count
