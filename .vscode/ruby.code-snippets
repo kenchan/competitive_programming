@@ -1,0 +1,7 @@
+{
+	"gets.split.map(&:to_i)": {
+		"scope": "ruby",
+		"prefix": "gets",
+		"body": "gets.split.map(&:to_i)"
+	}
+}
