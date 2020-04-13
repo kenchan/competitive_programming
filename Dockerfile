@@ -1,3 +1,3 @@
-FROM rubylang/ruby:2.3-bionic
+FROM rubylang/ruby:2.7-bionic
 
 ENV TZ Asia/Tokyo
