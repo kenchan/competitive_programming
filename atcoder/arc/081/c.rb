@@ -13,5 +13,5 @@ ab = aa.sort_by {|k,v| k * -1 }
 if ab[0][1] >= 4
   puts ab[0][0] ** 2
 else
-  puts ab[0][0] * ab[0][1]
+  puts ab[0][0] * ab[1][0]
 end
