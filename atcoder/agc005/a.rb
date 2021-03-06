@@ -1,19 +1,18 @@
-n = STDIN.gets.strip
-i = 0
+X = gets.chomp
 
-(10 ** 10000).times do
-  nn = n.sub('ST', '')
-  if n == nn
-    break
+ans = 0
+cs, ct = 0, 0
+
+X.each_char do |c|
+  if c == 'T'
+    if cs > 0
+      cs -= 1
+    else
+      ct += 1
+    end
   else
-    n = nn
+    cs += 1
   end
 end
 
-puts n.length
-
-# 半分じゃだめ
-#n = STDIN.gets.strip
-#i = 0
-#
-#puts n[0...(n.length / 2)].count('T') * 2
+puts cs + ct
