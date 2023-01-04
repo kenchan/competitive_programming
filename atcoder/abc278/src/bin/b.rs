@@ -10,7 +10,6 @@ fn main() {
         mut m: usize,
     }
 
-
     loop {
         let (rev_h, rev_m) = rev(h, m);
         if rev_h < 24 && rev_m < 60 {
