@@ -8,7 +8,7 @@ fn main() {
 
     let mut ans = vec![0; t];
 
-    for i in 0..t {
+    for i in ans.iter_mut() {
         input! {
             n: usize,
             a: [usize; n],
@@ -16,7 +16,7 @@ fn main() {
 
         for j in a {
             if j.is_odd() {
-                ans[i] += 1;
+                *i += 1;
             }
         }
     }
