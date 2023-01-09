@@ -17,7 +17,7 @@ fn main() {
         for j in a {
             if j.is_odd() {
                 ans[i] += 1;
-            }a
+            }
         }
     }
 
