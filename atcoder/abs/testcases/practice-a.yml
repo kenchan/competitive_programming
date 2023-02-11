@@ -1,0 +1,26 @@
+---
+type: Batch
+timelimit: 2s
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      1
+      2 3
+      test
+    out: |
+      6 test
+  - name: sample2
+    in: |
+      72
+      128 256
+      myonmyon
+    out: |
+      456 myonmyon
+
+extend:
+  - type: Text
+    path: "./practice-a"
+    in: /in/*.txt
+    out: /out/*.txt

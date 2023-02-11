@@ -1,0 +1,104 @@
+[package]
+name = "abs"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.cargo-compete.bin]
+abs-abc049c = { alias = "abc049c", problem = "https://atcoder.jp/contests/abs/tasks/arc065_a" }
+abs-abc081a = { alias = "abc081a", problem = "https://atcoder.jp/contests/abs/tasks/abc081_a" }
+abs-abc081b = { alias = "abc081b", problem = "https://atcoder.jp/contests/abs/tasks/abc081_b" }
+abs-abc083b = { alias = "abc083b", problem = "https://atcoder.jp/contests/abs/tasks/abc083_b" }
+abs-abc085b = { alias = "abc085b", problem = "https://atcoder.jp/contests/abs/tasks/abc085_b" }
+abs-abc085c = { alias = "abc085c", problem = "https://atcoder.jp/contests/abs/tasks/abc085_c" }
+abs-abc086a = { alias = "abc086a", problem = "https://atcoder.jp/contests/abs/tasks/abc086_a" }
+abs-abc086c = { alias = "abc086c", problem = "https://atcoder.jp/contests/abs/tasks/arc089_a" }
+abs-abc087b = { alias = "abc087b", problem = "https://atcoder.jp/contests/abs/tasks/abc087_b" }
+abs-abc088b = { alias = "abc088b", problem = "https://atcoder.jp/contests/abs/tasks/abc088_b" }
+abs-practice-a = { alias = "practice-a", problem = "https://atcoder.jp/contests/abs/tasks/practice_1" }
+
+[[bin]]
+name = "abs-abc049c"
+path = "src/bin/abc049c.rs"
+
+[[bin]]
+name = "abs-abc081a"
+path = "src/bin/abc081a.rs"
+
+[[bin]]
+name = "abs-abc081b"
+path = "src/bin/abc081b.rs"
+
+[[bin]]
+name = "abs-abc083b"
+path = "src/bin/abc083b.rs"
+
+[[bin]]
+name = "abs-abc085b"
+path = "src/bin/abc085b.rs"
+
+[[bin]]
+name = "abs-abc085c"
+path = "src/bin/abc085c.rs"
+
+[[bin]]
+name = "abs-abc086a"
+path = "src/bin/abc086a.rs"
+
+[[bin]]
+name = "abs-abc086c"
+path = "src/bin/abc086c.rs"
+
+[[bin]]
+name = "abs-abc087b"
+path = "src/bin/abc087b.rs"
+
+[[bin]]
+name = "abs-abc088b"
+path = "src/bin/abc088b.rs"
+
+[[bin]]
+name = "abs-practice-a"
+path = "src/bin/practice-a.rs"
+
+[dependencies]
+num = "=0.2.1"
+num-bigint = "=0.2.6"
+num-complex = "=0.2.4"
+num-integer = "=0.1.42"
+num-iter = "=0.1.40"
+num-rational = "=0.2.4"
+num-traits = "=0.2.11"
+num-derive = "=0.3.0"
+ndarray = "=0.13.0"
+nalgebra = "=0.20.0"
+alga = "=0.9.3"
+libm = "=0.2.1"
+rand = { version = "=0.7.3", features = ["small_rng"] }
+getrandom = "=0.1.14"
+rand_chacha = "=0.2.2"
+rand_core = "=0.5.1"
+rand_hc = "=0.2.0"
+rand_pcg = "=0.2.1"
+rand_distr = "=0.2.2"
+petgraph = "=0.5.0"
+indexmap = "=1.3.2"
+regex = "=1.3.6"
+lazy_static = "=1.4.0"
+ordered-float = "=1.0.2"
+ascii = "=1.0.0"
+permutohedron = "=0.2.4"
+superslice = "=1.0.0"
+itertools = "=0.9.0"
+itertools-num = "=0.1.3"
+maplit = "=1.0.2"
+either = "=1.5.3"
+im-rc = "=14.3.0"
+fixedbitset = "=0.2.0"
+bitset-fixed = "=0.1.0"
+proconio = { version = "=0.3.6", features = ["derive"] }
+text_io = "=0.1.8"
+whiteread = "=0.5.0"
+rustc-hash = "=1.1.0"
+smallvec = "=1.2.0"
+
+[dev-dependencies]
