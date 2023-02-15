@@ -1,3 +1,11 @@
+use itertools::Itertools;
+use proconio::input;
+
 fn main() {
-    todo!();
+    input! {
+        n: usize,
+        mut d: [usize; n],
+    }
+
+    println!("{}", d.iter().unique().count());
 }
