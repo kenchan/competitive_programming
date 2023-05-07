@@ -10,18 +10,32 @@ func main() {
 
 	ans := 0
 
-	for a := 1; a < n; a++ {
-		for b := 1; b < n; b++ {
-			if a * b >= n {
-				break;
-			}
-			for c := 1; c < n; c++ {
-				mod := (n - (a * b)) % c
-				if mod == 0 {
-					ans++
+	for x := 1; x < n; x++ {
+		y := n - x
+
+		var xPair, yPair int
+
+		for a := 1; a*a <= x; a++ {
+			if x%a == 0 {
+				if a*a == x {
+					xPair++
+				} else {
+					xPair += 2
 				}
 			}
 		}
+
+		for c := 1; c*c <= y; c++ {
+			if y%c == 0 {
+				if c*c == y {
+					yPair++
+				} else {
+					yPair += 2
+				}
+			}
+		}
+
+		ans += xPair * yPair
 	}
 
 	fmt.Println(ans)
