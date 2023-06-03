@@ -1,15 +1,13 @@
+require 'set'
+
 N, K = gets.split.map(&:to_i)
-As = gets.split.map(&:to_i)
+Aa = gets.split.map(&:to_i).inject(Set.new) {|set, a| set << a }
 
-as = As.sort.uniq
-
-max = K < as.size - 1 ? K : as.size - 1
-
-max.times do |i|
-  if as[i] != i
-    puts i
+K.times do |k|
+  unless Aa.include?(k)
+    puts k
     exit
   end
 end
 
-puts max
+puts K
