@@ -1,6 +1,1 @@
-# https://atcoder.jp/contests/abc231/tasks/abc231_a
-
-
-D = gets.to_i
-
-puts ans
+puts gets.to_f / 100
