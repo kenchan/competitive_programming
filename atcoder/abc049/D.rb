@@ -1,12 +1,9 @@
 # https://atcoder.jp/contests/abc049/tasks/arc065_b
 
-require 'set'
-
 class UnionFindTree
   def initialize(size)
     @parents = Array.new(size, -1)
     @sizes = Array.new(size, 1)
-    @children = size.times.map {|i| Set.new([i]) }
   end
 
   def root(x)
@@ -29,16 +26,12 @@ class UnionFindTree
 
     @parents[root_y] = root_x
     @sizes[root_x] += @sizes[root_y]
-    @children[root_x] += @children[root_y]
   end
 
   def size(x)
     @sizes[root(x)]
   end
 
-  def children(x)
-    @children[root(x)]
-  end
 end
 
 N, K, L = gets.split.map(&:to_i)
@@ -54,11 +47,14 @@ end
 
 ans = []
 
-N.times do |i|
-  pq_c = pq.children(i)
-  rs_c = rs.children(i)
+root_pairs = N.times.inject({}) do |acc, i|
+  acc[[pq.root(i), rs.root(i)]] ||= 0
+  acc[[pq.root(i), rs.root(i)]] += 1
+  acc
+end
 
-  ans << (pq_c & rs_c).size
+N.times.map do |i|
+  ans << root_pairs[[pq.root(i), rs.root(i)]]
 end
 
 puts ans.join(" ")
