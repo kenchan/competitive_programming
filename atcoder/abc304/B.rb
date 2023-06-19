@@ -1,6 +1,13 @@
-# https://atcoder.jp/contests/abc304/tasks/abc304_b
+N = gets.chomp.split('')
 
-
-N = gets.to_i
-
-puts ans
+if N.size < 4
+  puts N.join
+else
+  puts N.size.times.map {|i|
+    if i >= 3
+      0
+    else
+      N[i]
+    end
+  }.join
+end
