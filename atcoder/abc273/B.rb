@@ -1,6 +1,7 @@
-# https://atcoder.jp/contests/abc273/tasks/abc273_b
+x, k = gets.split.map(&:to_i)
 
+k.times do |i|
+  x = x.round(-i - 1)
+end
 
-X, K = gets.split.map(&:to_i)
-
-puts ans
+puts x

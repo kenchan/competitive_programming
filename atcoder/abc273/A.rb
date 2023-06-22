@@ -1,6 +1,1 @@
-# https://atcoder.jp/contests/abc273/tasks/abc273_a
-
-
-N = gets.to_i
-
-puts ans
+puts gets.to_i.downto(1).inject(1) {|acc, i| acc * i }
