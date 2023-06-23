@@ -1,6 +1,6 @@
-# https://atcoder.jp/contests/abc305/tasks/abc305_a
+n = gets.chomp.to_i
 
+d1 = n / 5 * 5
+d2 = (n + 4) / 5 * 5
 
-N = gets.to_i
-
-puts ans
+puts (d1 - n).abs < (d2 - n).abs ? d1 : d2
