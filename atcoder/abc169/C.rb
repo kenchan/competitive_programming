@@ -1,6 +1,7 @@
 # https://atcoder.jp/contests/abc169/tasks/abc169_c
 
+require 'bigdecimal/util'
 
-A, B = gets.split.map(&:to_f)
+A, B = gets.split.map(&:to_d)
 
-puts ans
+puts (A * B).to_i
