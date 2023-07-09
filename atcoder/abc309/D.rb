@@ -1,45 +1,33 @@
 # https://atcoder.jp/contests/abc309/tasks/abc309_d
 
-@c = {}
 
-def bfs(g, start, goal)
-  return @c[goal] if @c[goal]
+def bfs(g, start)
   queue = [[start, 0]]
-  visited = Hash.new { false }
+  visited = Hash.new(false)
 
   while !queue.empty?
     v, d = queue.shift
 
-    return d if v == goal
-
-    visited[v] = true
-
-    next unless g[v]
+    next if visited[v]
+    visited[v] = d
 
     g[v].each do |i|
-      if @c[i] && d + 1 < @c[i]
-        @c[i] = d + 1
-      end
       queue << [i, d + 1] unless visited[i]
     end
   end
 
-  nil
+  visited.values.max
 end
 
 N_1, N_2, M = gets.split.map(&:to_i)
 
-g1 = {}
-g2 = {}
+g1 = Hash.new {|h,k| h[k] = []}
+g2 = Hash.new {|h,k| h[k] = []}
 
 
 M.times do |i|
   a, b = gets.split.map(&:to_i)
 
-  g1[a] ||= []
-  g1[b] ||= []
-  g2[a] ||= []
-  g2[b] ||= []
   if a <= N_1
     g1[a] << b
     g1[b] << a
@@ -49,7 +37,7 @@ M.times do |i|
   end
 end
 
-a1 = 1.upto(N_1).map {|i| bfs(g1, 1, i) }
-a2 = (N_1 + 1).upto(N_1 + N_2 - 1).map {|i| bfs(g2, N_1 + N_2, i) }
+a1 = bfs(g1, 1)
+a2 = bfs(g2, N_1 + N_2)
 
-puts a1.compact.max + a2.compact.max + 1
+puts a1 + a2 + 1
