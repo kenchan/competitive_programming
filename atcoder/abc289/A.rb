@@ -1,6 +1,5 @@
 # https://atcoder.jp/contests/abc289/tasks/abc289_a
 
+s = gets.chomp
 
-s = gets.to_i
-
-puts ans
+puts s.chars.map {|c| c == '1' ? '0' : '1'}.join
