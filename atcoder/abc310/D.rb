@@ -1,30 +1,40 @@
 # https://atcoder.jp/contests/abc310/tasks/abc310_d
 
 
+require 'set'
 N, T, M = gets.split.map(&:to_i)
-ab = M.times.map { gets.split.map(&:to_i) }
 
-def divide_into_teams(people, teams = [], results = [])
-  if teams.size == T - 1
-    teams << people
-    # 各チームをソートし、組み合わせ全体をソート
-    sorted_teams = teams.map(&:sort).sort
-    # 重複を避けるために、組み合わせがまだ結果に含まれていない場合だけ追加
-    results << sorted_teams unless results.include?(sorted_teams)
-    teams.pop
-  else
-    (1..(people.size - T + 1)).each do |i|
-      teams << people.shift(i)
-      divide_into_teams(people, teams, results)
-      people.unshift(*teams.pop)
-    end
+def dfs(player, hates, teams)
+  if player == N + 1
+    return teams.size == T ? 1 : 0
   end
-  results
+
+  ans = 0
+
+  teams.each do |team|
+    if team.any? {|m| hates[player].include?(m) }
+      next
+    end
+
+    team << player
+    ans += dfs(player + 1, hates, teams)
+    team.delete(player)
+  end
+
+  if teams.size < T
+    teams << Set.new([player])
+    ans += dfs(player + 1, hates, teams)
+    teams.pop
+  end
+
+  ans
 end
 
-people = (1..N).to_a
-results = divide_into_teams(people)
+hates = M.times.inject(Hash.new {|h, k| h[k] = Set.new}) {|acc, _|
+  a, b = gets.split.map(&:to_i)
+  acc[a] << b
+  acc[b] << a
+  acc
+}
 
-results.each do |result|
-  p result
-end
+puts dfs(1, hates, [])
