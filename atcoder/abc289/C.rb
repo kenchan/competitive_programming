@@ -1,10 +1,20 @@
 # https://atcoder.jp/contests/abc289/tasks/abc289_c
 
+require 'set'
 
 N, M = gets.split.map(&:to_i)
-Cs = Array.new(1) { gets.to_i }
-ass = Array.new(1) { gets.split.map(&:to_i) }
-Cs = Array.new(2) { gets.to_i }
-C_M = gets.to_i
+as = M.times.map {
+  gets
+  Set.new(gets.split.map(&:to_i))
+}
 
-puts ans
+puts (1 << M).times.select {|i|
+  s = Set.new
+  M.times do |j|
+    if i[j] == 1
+      s = s + as[j]
+    end
+  end
+
+  s.size == N
+}.size
