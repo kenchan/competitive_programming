@@ -2,7 +2,9 @@
 
 
 N, M = gets.split.map(&:to_i)
-Ss = Array.new(N) { gets.to_i }
-Ts = Array.new(M) { gets.to_i }
+Ss = Array.new(N) { gets.chomp }
+Ts = Array.new(M) { gets.chomp }
 
-puts ans
+puts Ts.uniq.inject(0) {|ans, t|
+  ans + Ss.count {|s| s.end_with?(t) }
+}
