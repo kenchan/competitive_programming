@@ -3,10 +3,19 @@
 
 N, K = gets.split.map(&:to_i)
 As = gets.split.map(&:to_i)
-Xs = Array.new(N)
-Ys = Array.new(N)
+Axy = []
+Bxy = []
 N.times do |i|
-  Xs[i], Ys[i] = gets.split.map(&:to_i)
+  if As.include?(i + 1)
+    Axy << gets.split.map(&:to_i)
+  else
+    Bxy << gets.split.map(&:to_i)
+  end
 end
 
-puts ans
+puts Bxy.map {|(bx, by)|
+  Axy.map {|(ax, ay)|
+    # 線分の長さを求める
+    Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2)
+  }.min
+}.max
