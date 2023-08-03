@@ -1,0 +1,6 @@
+5
+mul C A B
+rem C C
+add A A 10
+add D 2 B
+add E 1 0
