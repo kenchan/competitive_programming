@@ -1,16 +1,27 @@
 # https://atcoder.jp/contests/abc209/tasks/abc209_d
 
-
 N, Q = gets.split.map(&:to_i)
-as = Array.new(N-1)
-bs = Array.new(N-1)
-N-1.times do |i|
-  as[i], bs[i] = gets.split.map(&:to_i)
-end
-cs = Array.new(Q)
-ds = Array.new(Q)
-Q.times do |i|
-  cs[i], ds[i] = gets.split.map(&:to_i)
+AB = (N - 1).times.map { gets.split.map(&:to_i) }
+CD = Q.times.map { gets.split.map(&:to_i) }
+
+routes = AB.inject(Hash.new {|h, k| h[k] = []}) do |hash, (a, b)|
+  hash[a] << b
+  hash[b] << a
+  hash
 end
 
-puts ans
+rb = {}
+
+queue = [[1, 0]]
+until queue.empty?
+  (n, d) = queue.shift
+  rb[n] = d
+  routes[n].each do |m|
+    next if rb[m]
+    queue << [m, (d + 1) % 2]
+  end
+end
+
+CD.each do |c, d|
+  puts rb[c] == rb[d] ? 'Town' : 'Road'
+end
