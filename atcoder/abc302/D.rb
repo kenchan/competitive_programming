@@ -2,7 +2,10 @@
 
 
 N, M, D = gets.split.map(&:to_i)
-As = gets.split.map(&:to_i)
-Bs = gets.split.map(&:to_i)
+As = gets.split.map(&:to_i).sort
+Bs = gets.split.map(&:to_i).sort
 
-puts ans
+puts As.map {|a|
+  b = Bs.bsearch {|b| (b - a).abs <= D }
+  a + b
+}.max
