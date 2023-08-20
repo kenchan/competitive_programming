@@ -2,6 +2,10 @@
 
 
 H, W = gets.split.map(&:to_i)
-Css = Array.new(H) { gets.chomp }
+C = Array.new(H) { gets.chomp.split('') }
 
-puts ans
+puts W.times.map {|i|
+  H.times.select {|j|
+    C[j][i] == '#'
+  }.size
+}.join(' ')
