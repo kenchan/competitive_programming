@@ -1,35 +1,42 @@
 # https://atcoder.jp/contests/abc317/tasks/abc317_c
 
 N, M = gets.split.map(&:to_i)
-routes = Hash.new {|h, k| h[k] = {}}
+@routes = N.times.map {
+  N.times.map {
+    nil
+  }
+}
 M.times do |i|
   a, b, c = *gets.split.map(&:to_i)
-  if routes[a][b].nil? || routes[a][b] < c
-    routes[a][b] = c
-  end
-  if routes[b][a].nil? || routes[b][a] < c
-    routes[b][a] = c
-  end
+  a -= 1
+  b -= 1
+  @routes[a][b] = c
+  @routes[b][a] = c
 end
 
-ans = 0
-N.times do |start|
-  start += 1
+require 'stackprof'
+StackProf.run(out: 'stackprof.dump') do
 
-  queue = [[start, Set.new([start]), 0]]
+@ans = 0
+@visits = {}
 
-  until queue.empty?
-    current, visits, length = *queue.shift
+def dfs(current, cost)
+  @visits[current] = true
+  @ans = cost if cost > @ans
 
-    routes[current].each do |(n, l)|
-      unless visits.include?(n)
-        queue << [n, visits.dup.add(n), l + length]
-        if length + l > ans
-          ans = length + l
-        end
-      end
+  @routes[current].each do |n|
+    next if @routes[current][n].nil?
+    unless @visits[n]
+      dfs(n, cost + @routes[current][n])
     end
   end
+
+  @visits[current] = false
 end
 
-puts ans
+@routes.each do |start, _|
+  dfs(start, 0)
+end
+end
+
+puts @ans
