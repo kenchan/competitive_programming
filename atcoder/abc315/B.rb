@@ -2,13 +2,13 @@
 
 M = gets.to_i
 Ds = gets.split.map(&:to_i)
-c = Ds.sum / 2
+c = Ds.sum / 2  + 1
 
 Ds.each_with_index do |d, i|
   if d < c
     c -= d
   else
-    puts "#{i + 1} #{c + 1}"
+    puts "#{i + 1} #{c}"
     exit
   end
 end
